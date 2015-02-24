@@ -7,7 +7,7 @@
     <ProjectGuid>{CAE08088-6C5F-4350-AF93-64FCA5EB99E3}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>wcf_dynclient</RootNamespace>
+    <RootNamespace>knyu.WcfSamples.DynClient</RootNamespace>
     <AssemblyName>wcf-dynclient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -49,9 +49,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\wcf_dynclient_lib\wcf_dynclient_lib.csproj">
+    <ProjectReference Include="..\knyu.WcfSamples.DynClient.Lib\knyu.WcfSamples.DynClient.Lib.csproj">
       <Project>{15B3E0D2-6217-493A-A690-158C497F5318}</Project>
-      <Name>wcf_dynclient_lib</Name>
+      <Name>knyu.WcfSamples.DynClient.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

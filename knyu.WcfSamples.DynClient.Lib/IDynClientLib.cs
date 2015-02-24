@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
 
-namespace wcf_dynclient_lib
+namespace knyu.WcfSamples.DynClient.Lib
 {
     [ServiceContract]
     public interface IDynClientLib

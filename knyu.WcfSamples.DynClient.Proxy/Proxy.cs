@@ -12,7 +12,7 @@ using System.ServiceModel.Description;
 using System.Text;
 using System.Xml;
 
-namespace wcf_dynclient_proxy
+namespace knyu.WcfSamples.DynClient.Proxy
 {
     public class Proxy
     {
@@ -133,7 +133,7 @@ namespace wcf_dynclient_proxy
             return Compile();
         }
 
-        public void Update()
+        private void Update()
         {
             Debug.Assert(string.IsNullOrWhiteSpace(m_contractName) == false);
 

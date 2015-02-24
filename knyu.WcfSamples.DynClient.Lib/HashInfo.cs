@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace wcf_dynclient_lib
+namespace knyu.WcfSamples.DynClient.Lib
 {
     [DataContract]
     public class HashInfo

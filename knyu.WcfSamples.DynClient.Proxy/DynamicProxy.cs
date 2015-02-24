@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Dynamic;
 
-namespace wcf_dynclient_proxy
+namespace knyu.WcfSamples.DynClient.Proxy
 {
     internal class DynamicProxy : DynamicObject
     {

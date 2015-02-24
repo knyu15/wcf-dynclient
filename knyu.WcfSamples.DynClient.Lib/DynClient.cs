@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
 
-namespace wcf_dynclient_lib
+namespace knyu.WcfSamples.DynClient.Lib
 {
     public class DynClient : IDynClientLib
     {

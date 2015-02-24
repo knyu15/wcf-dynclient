@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ServiceModel;
-using wcf_dynclient_lib;
 
 namespace knyu.WcfSamples.DynClient
 {
@@ -8,7 +7,7 @@ namespace knyu.WcfSamples.DynClient
     {
         static void Main(string[] args)
         {
-            using (var host = new ServiceHost(typeof(wcf_dynclient_lib.DynClient)))
+            using (var host = new ServiceHost(typeof(Lib.DynClient)))
             {
                 host.Open();
 
