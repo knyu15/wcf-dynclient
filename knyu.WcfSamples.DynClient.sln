@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wcf_dynclient", "wcf-dynclient\wcf_dynclient.csproj", "{CAE08088-6C5F-4350-AF93-64FCA5EB99E3}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "knyu.WcfSamples.DynClient", "wcf-dynclient\knyu.WcfSamples.DynClient.csproj", "{CAE08088-6C5F-4350-AF93-64FCA5EB99E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wcf_dynclient_lib", "wcf_dynclient_lib\wcf_dynclient_lib.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
 EndProject

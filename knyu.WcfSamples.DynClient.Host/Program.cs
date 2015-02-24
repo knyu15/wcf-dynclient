@@ -2,13 +2,13 @@
 using System.ServiceModel;
 using wcf_dynclient_lib;
 
-namespace wcf_dynclient
+namespace knyu.WcfSamples.DynClient
 {
     class Program
     {
         static void Main(string[] args)
         {
-            using (var host = new ServiceHost(typeof(DynClient)))
+            using (var host = new ServiceHost(typeof(wcf_dynclient_lib.DynClient)))
             {
                 host.Open();
 
