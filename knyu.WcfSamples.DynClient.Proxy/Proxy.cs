@@ -14,20 +14,46 @@ using System.Xml;
 
 namespace knyu.WcfSamples.DynClient.Proxy
 {
+    /// <summary>
+    /// This class represents a proxy that allows a client to store a reference to WCF service client.
+    /// This proxy dynamic instance can update itself dynamically when WCF service interface changed
+    /// without recompiling the project.
+    /// </summary>
     public class Proxy
     {
+        /// <summary>
+        /// Creates new instance of Proxy
+        /// </summary>
+        /// <param name="mexAddress">Metadata echange endpoint address</param>
+        /// <param name="contractName">Contract name</param>
         public Proxy(string mexAddress, string contractName)
         {
-            if(string.IsNullOrWhiteSpace(mexAddress))
+            if (string.IsNullOrWhiteSpace(mexAddress))
                 throw new ArgumentException("mexAddress");
 
-            if (contractName == null) 
+            if (contractName == null)
                 throw new ArgumentNullException("contractName");
 
             m_mexAddress = mexAddress;
             m_contractName = contractName;
         }
 
+        /// <summary>
+        /// Creates dynamic variable implemented current WCF service public interface
+        /// </summary>
+        /// <returns>Dynamic instance of WCF service client</returns>
+        public dynamic CreateNewInstance()
+        {
+            Debug.Assert(string.IsNullOrWhiteSpace(m_contractName) == false);
+
+            Update();
+            return Compile();
+        }
+
+        /// <summary>
+        /// Checks if update of dynamic WCF client instance needed
+        /// </summary>
+        /// <returns>True if update needed, false otherwise</returns>
         public bool IsUpdateNeeded()
         {
             if (m_metadataSet == null)
@@ -43,7 +69,7 @@ namespace knyu.WcfSamples.DynClient.Proxy
 
         private string SerializeMetadataSetToString(MetadataSet metadataSet)
         {
-            if (metadataSet == null) 
+            if (metadataSet == null)
                 throw new ArgumentNullException("metadataSet");
 
             var stringBuilder = new StringBuilder();
@@ -73,7 +99,7 @@ namespace knyu.WcfSamples.DynClient.Proxy
 
         private void UpdateMetadata(MetadataSet metadataSet)
         {
-            if (metadataSet == null) 
+            if (metadataSet == null)
                 throw new ArgumentNullException("metadataSet");
 
             MetadataImporter metadataImporter = new WsdlImporter(metadataSet);
@@ -88,7 +114,7 @@ namespace knyu.WcfSamples.DynClient.Proxy
             Debug.Assert(m_serviceEndpoints != null);
 
             var generator = new ServiceContractGenerator();
-            
+
             m_serviceContractEndpoints.Clear();
             foreach (var contract in m_contractDescriptions)
             {
@@ -106,7 +132,7 @@ namespace knyu.WcfSamples.DynClient.Proxy
                 {
                     "System.dll", "System.ServiceModel.dll",
                     "System.Runtime.Serialization.dll"
-                }) { GenerateInMemory = true };
+                }) {GenerateInMemory = true};
 
 
             var compilerResults = codeDomProvider.CompileAssemblyFromDom(compilerParameters,
@@ -125,14 +151,6 @@ namespace knyu.WcfSamples.DynClient.Proxy
             return m_serviceContractEndpoints[m_contractName].FirstOrDefault();
         }
 
-        public dynamic CreateNewInstance()
-        {
-            Debug.Assert(string.IsNullOrWhiteSpace(m_contractName) == false);
-
-            Update();
-            return Compile();
-        }
-
         private void Update()
         {
             Debug.Assert(string.IsNullOrWhiteSpace(m_contractName) == false);
@@ -147,7 +165,7 @@ namespace knyu.WcfSamples.DynClient.Proxy
 
             var wcfObjectInstance = CreateInstance(compilerResults);
             dynamic instance = new DynamicProxy(wcfObjectInstance);
-            return instance;   
+            return instance;
         }
 
         private object CreateInstance(CompilerResults compilerResults)
@@ -178,6 +196,8 @@ namespace knyu.WcfSamples.DynClient.Proxy
         private MetadataSet m_metadataSet;
         private ServiceEndpointCollection m_serviceEndpoints;
         private Collection<ContractDescription> m_contractDescriptions;
-        private readonly Dictionary<string, IEnumerable<ServiceEndpoint>> m_serviceContractEndpoints = new Dictionary<string, IEnumerable<ServiceEndpoint>>();
+
+        private readonly Dictionary<string, IEnumerable<ServiceEndpoint>> m_serviceContractEndpoints =
+            new Dictionary<string, IEnumerable<ServiceEndpoint>>();
     }
 }

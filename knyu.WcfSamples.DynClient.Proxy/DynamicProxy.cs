@@ -4,6 +4,10 @@ using System.Dynamic;
 
 namespace knyu.WcfSamples.DynClient.Proxy
 {
+    /// <summary>
+    /// DynamicProxy represents dynamic represenatition of abstract WCF client instance.
+    /// It using as a helper abstract representation of dynamically changing open interface
+    /// </summary>
     internal class DynamicProxy : DynamicObject
     {
         public DynamicProxy(object wcfObjectInstance)
